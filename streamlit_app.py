@@ -23,5 +23,5 @@ private_key = base64.b64decode(encoded_private_key)
 
 st.write(private_key)
 
-# cnx = st.connection("snowflake", type="snowflake", private_key=private_key, passphrase='snowflake')
+cnx = st.connection("snowflake", type="snowflake", private_key=private_key, passphrase='snowflake')
 # session=cnx.session()
