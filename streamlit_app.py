@@ -10,10 +10,16 @@ Choose the fruits you want in your custom Smoothie!""")
 name_on_order =st.text_input("Name on Smoothie")
 st.write(f'The name of the smoothie will be:{name_on_order}')
 
+# Retrieve the Base64 encoded private key from Streamlit secrets
+encoded_private_key = st.secrets["connections.snowflake"]["private_key"]
 
-# session = get_active_session()
-cnx = st.connection("snowflake")
+# Decode the Base64 string back to the original private key binary
+private_key = base64.b64decode(encoded_private_key)
+
+session = get_active_session()
+cnx = st.connection("snowflake", type="snowflake", private_key=private_key, passphrase='snowflake')
 session=cnx.session()
+
 
 my_dataframe = session.table("smoothies.public.fruit_options").select(col('fruit_name'))
 
@@ -21,9 +27,6 @@ my_dataframe = session.table("smoothies.public.fruit_options").select(col('fruit
 ingredient_list = st.multiselect('Choose up to 5 ingredients:', my_dataframe, max_selections=5)
 
 if ingredient_list:
-    # st.write(ingredient_list)
-    # st.text(ingredient_list)
-
     ingredient_sring=''
     for x in ingredient_list:
         ingredient_sring += x + ' '
