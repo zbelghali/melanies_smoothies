@@ -11,7 +11,7 @@ name_on_order =st.text_input("Name on Smoothie")
 st.write(f'The name of the smoothie will be:{name_on_order}')
 
 st.write(st.secrets)
-st.write(st.secrets["connections"])
+st.write(st.secrets["connections.snowflake"])
 
 
 # Retrieve the Base64 encoded private key from Streamlit secrets
