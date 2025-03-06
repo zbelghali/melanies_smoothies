@@ -21,5 +21,7 @@ encoded_private_key = st.secrets["connections"]["snowflake"]["private_key"]
 # Decode the Base64 string back to the original private key binary
 private_key = base64.b64decode(encoded_private_key)
 
-cnx = st.connection("snowflake", type="snowflake", private_key=private_key, passphrase='snowflake')
-session=cnx.session()
+st.write(private_key)
+
+# cnx = st.connection("snowflake", type="snowflake", private_key=private_key, passphrase='snowflake')
+# session=cnx.session()
