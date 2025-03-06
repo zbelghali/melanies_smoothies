@@ -10,12 +10,12 @@ Choose the fruits you want in your custom Smoothie!""")
 name_on_order =st.text_input("Name on Smoothie")
 st.write(f'The name of the smoothie will be:{name_on_order}')
 
-st.write(st.secrets)
-st.write(st.secrets["connections"]["snowflake"])
+# st.write(st.secrets)
+# st.write(st.secrets["connections"]["snowflake"])
 
 
 # Retrieve the Base64 encoded private key from Streamlit secrets
-# encoded_private_key = st.secrets["connections.snowflake"]["private_key"]
+encoded_private_key = st.secrets["connections"]["snowflake"]["private_key"]
 
 # Decode the Base64 string back to the original private key binary
-# private_key = base64.b64decode(encoded_private_key)
+private_key = base64.b64decode(encoded_private_key)
